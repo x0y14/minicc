@@ -42,5 +42,20 @@ setup-build-minivm: ## Build minivm
 # CC系
 
 .PHONY: build-minicc
-build-minicc:
+build-minicc: ## Build C Compiler
 	cc -o $(OUT_DIR)/minicc $(SRC_DIR)/minicc.c
+
+
+.PHONY: test
+test: ## Test C Compiler
+	./test.sh
+
+.PHONY: test-build
+test-build:build-minicc test
+
+.PHONY: debug
+debug: ## Test C Compiler (verbose)
+	bash -x ./test.sh
+
+.PHONY: debug-build
+debug-build:build-minicc debug
